@@ -3,7 +3,7 @@ using System.Net.Sockets;
 
 namespace lab7_oop
 {
-    class Account
+    struct Account
     {
         public void read()
         {
@@ -35,7 +35,7 @@ namespace lab7_oop
         {
             this.type = type;
             this.second_name = second_name;
-            this.number = this.number;
+            this.number = number;
             this.remains = remains;
         }
         public string getType() { return this.type; }
@@ -60,8 +60,8 @@ namespace lab7_oop
             Console.Write("Введите остаток для проверки: ");
             double rem = Convert.ToDouble(Console.ReadLine());
             Console.Write("Введите тип счета: ");
-            Console.WriteLine("Найденные счета: ");
             string type = Console.ReadLine();
+            Console.WriteLine("Найденные счета: ");
             for(int i = 0; i < n; i++)
                 if(accs[i].getType() == type && accs[i].getRemains() < rem)
                     accs[i].display();
