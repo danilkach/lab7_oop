@@ -18,17 +18,26 @@ namespace lab7_oop
         }
         public void display() { Console.WriteLine("Тип счета: {0}\nНомер счета: " + 
         "{1}\nФамилия владельца: {2}\nОстатки на счете: {3}", this.type, this.number, this.second_name, this.remains); }
+
         public static Account Add(Account a1, Account a2)
         {
             Account result = new Account();
             result.second_name = a1.second_name;
             result.type = a1.type;
             result.remains = a1.remains + a2.remains;
-            result.number = a1.number.Substring(0, a1.number.Length / 2) 
-                          + a2.number.Substring(a2.number.Length - a2.number.Length / 2);
+            result.number = a1.number.Substring(0, a1.number.Length / 2)
+                            + a2.number.Substring(a2.number.Length - a2.number.Length / 2);
             return result;
+
         }
 
+        void init(string type, string second_name, string number, double remains)
+        {
+            this.type = type;
+            this.second_name = second_name;
+            this.number = this.number;
+            this.remains = remains;
+        }
         public string getType() { return this.type; }
         public double getRemains() { return this.remains; }
         private string type;
