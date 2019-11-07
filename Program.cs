@@ -3,7 +3,41 @@ using System.Net.Sockets;
 
 namespace lab7_oop
 {
-    struct Account
+    class Bank
+    {
+        public Bank()
+        {
+            for(int i = 0; i < 3; i++) 
+                accs[i] = new Account();
+        }
+
+        public void setAdditional(double sum) { additional = sum; }
+        public double total()
+        {
+            double result = 0;
+            for (int i = 0; i < 3; i++)
+                result += accs[i].getRemains();
+            return result;
+        }
+
+        public void read()
+        {
+            for(int i = 0; i < 3; i++)
+                accs[i].read();
+        }
+        public string maxAccount()
+        {
+            Account max = accs[0];
+            if (accs[1].getRemains() > max.getRemains())
+                max = accs[1];
+            if (accs[2].getRemains() > max.getRemains())
+                max = accs[2];
+            return max.getNumber();
+        }
+        private double additional = 0;
+        private Account[] accs = new Account[3];
+    }
+    class Account
     {
         public void read()
         {
@@ -40,6 +74,7 @@ namespace lab7_oop
         }
         public string getType() { return this.type; }
         public double getRemains() { return this.remains; }
+        public string getNumber() { return this.number; }
         private string type;
         private string second_name;
         private string number;
@@ -49,22 +84,11 @@ namespace lab7_oop
     {
         public static void Main(string[] args)
         {
-            Console.Write("Введите количество счетов: ");
-            int n = Convert.ToInt32(Console.ReadLine());
-            Account[] accs = new Account[n];
-            for(int i = 0; i < n; i++)
-            {
-                accs[i] = new Account();
-                accs[i].read();
-            }
-            Console.Write("Введите остаток для проверки: ");
-            double rem = Convert.ToDouble(Console.ReadLine());
-            Console.Write("Введите тип счета: ");
-            string type = Console.ReadLine();
-            Console.WriteLine("Найденные счета: ");
-            for(int i = 0; i < n; i++)
-                if(accs[i].getType() == type && accs[i].getRemains() < rem)
-                    accs[i].display();
+            Bank vtb = new Bank();q
+            vtb.read();
+            vtb.setAdditional(500000);
+            Console.WriteLine("Total babok v banke = {0}", vtb.total());
+            Console.WriteLine("Max account is " + vtb.maxAccount());
         }
     }
 }
