@@ -17,7 +17,7 @@ namespace lab7_oop
             double result = 0;
             for (int i = 0; i < 3; i++)
                 result += accs[i].getRemains();
-            return result;
+            return result + additional;
         }
 
         public void read()
@@ -53,7 +53,7 @@ namespace lab7_oop
         public void display() { Console.WriteLine("Тип счета: {0}\nНомер счета: " + 
         "{1}\nФамилия владельца: {2}\nОстатки на счете: {3}", this.type, this.number, this.second_name, this.remains); }
 
-        public static Account Add(Account a1, Account a2)
+        public Account Add(Account a1, Account a2)
         {
             Account result = new Account();
             result.second_name = a1.second_name;
@@ -74,19 +74,34 @@ namespace lab7_oop
         }
         public string getType() { return this.type; }
         public double getRemains() { return this.remains; }
-        public string getNumber() { return this.number; }
+
+        /*public string getNumber()
+        {
+            return this.number;
+        }*/
         private string type;
         private string second_name;
         private string number;
         private double remains;
+
+        public int Number
+        {
+            get { Convert.ToInt32(number); }
+            set { number = Convert.ToString(value); }
+        }
     };
     internal class Program
     {
         public static void Main(string[] args)
         {
-            Bank vtb = new Bank();q
+            Bank vtb = new Bank();
             vtb.read();
             vtb.setAdditional(500000);
+            Account p1 = new Account(), p2 = new Account();
+            p1.read();
+            p2.read();
+            p1.Number = 12345678;
+            Console.WriteLine(p1.Number);
             Console.WriteLine("Total babok v banke = {0}", vtb.total());
             Console.WriteLine("Max account is " + vtb.maxAccount());
         }
